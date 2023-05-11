@@ -1,4 +1,3 @@
-// setup .env bisa dilihat di file loadEnv.js
 import './loadEnv.js';
 import 'express-async-errors';
 import express, { json } from 'express';
@@ -7,10 +6,10 @@ import notFoundMiddleware from './middleware/not-found.js';
 import errorHandlerMiddleware from './middleware/error-handler.js';
 import morgan from 'morgan';
 import authRouter from './routes/authRoutes.js';
+import userRouter from './routes/userRoutes.js';
 import articleRouter from './routes/articleRoutes.js';
 import cookieParser from 'cookie-parser';
 import cors from 'cors';
-import rateLimiter from 'express-rate-limit';
 import helmet from 'helmet';
 import xss from 'xss-clean';
 import mongoSanitize from 'express-mongo-sanitize';
@@ -30,13 +29,7 @@ app.use(express.json());
 app.use(express.static('./public'));
 
 app.set('trust proxy', 1);
-// app.use(
-//   rateLimiter({
-//     windowMs: 15 * 60 * 1000,
-//     max: 60,
-//     message: { msg: 'Too many requests, please try again later' },
-//   })
-// );
+
 app.use(helmet());
 // agar bisa digunakan selain di host yang sama, misal agar bisa digunakan oleh fe
 app.use(
@@ -63,6 +56,7 @@ app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 // ROUTE
 app.use('/api/v1/auth', authRouter);
 app.use('/api/v1/articles', articleRouter);
+app.use('/api/v1/users', userRouter);
 
 // kalo di route nggak ada maka akan menjalankan ini, makanya ditaor di bawah route2 yang ada
 app.use(notFoundMiddleware);
