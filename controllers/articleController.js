@@ -50,7 +50,7 @@ const getSingleArticle = async (req, res) => {
     select: 'name',
   });
   if (!article) {
-    throw new CustomError.NotFoundError(`No order with id ${articleId}`);
+    throw new CustomError.NotFoundError(`No article with id ${articleId}`);
   }
   res.status(StatusCodes.OK).json({
     status: 'success',
