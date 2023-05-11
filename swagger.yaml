@@ -1,0 +1,1257 @@
+openapi: 3.0.0
+info:
+  title: Programming-knowledge
+  contact: {}
+  version: '1.0'
+servers:
+  - url: https://fair-teal-buffalo-coat.cyclic.app/api/v1
+    variables: {}
+paths:
+  /auth/register:
+    post:
+      tags:
+        - Auth
+      summary: Register
+      operationId: Register
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/RegisterRequest'
+                - example:
+                    name: fulan
+                    email: fulan@gmail.com
+                    password: secret
+            example:
+              name: fulan
+              email: fulan@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/login:
+    post:
+      tags:
+        - Auth
+      summary: Login
+      description: You can register here
+      operationId: Login
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/LoginRequest'
+                - example:
+                    email: fulan@gmail.com
+                    password: secret
+            example:
+              email: fulan@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/login-admin:
+    post:
+      tags:
+        - Auth
+      summary: Login Admin
+      description: You can login here
+      operationId: login-admin
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/LoginAdminRequest'
+                - example:
+                    email: fulan@gmail.com
+                    password: secret
+            example:
+              email: fulan@gmail.com
+              password: secret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /auth/logout:
+    get:
+      tags:
+        - Auth
+      summary: Logout
+      operationId: Logout
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users:
+    get:
+      tags:
+        - User
+      summary: Get All Users
+      operationId: GetAllUsers
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/{userId}:
+    get:
+      tags:
+        - User
+      summary: Get Single User
+      operationId: GetSingleUser
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - User
+      summary: Delete User
+      operationId: DeleteUser
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/showMe:
+    get:
+      tags:
+        - User
+      summary: Show Current User
+      operationId: ShowCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/validateToken:
+    get:
+      tags:
+        - User
+      summary: Validate Token
+      operationId: ValidateToken
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/updateUser:
+    patch:
+      tags:
+        - User
+      summary: Update User
+      operationId: UpdateUser
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateUserRequest'
+                - example:
+                    name: fulan
+                    phone: '081111111111'
+                    patientName: siti
+                    birthday: '2023-01-30T00:00:00.000Z'
+                    address: here
+                    motherName: fulanah
+                    fatherName: fulan
+                    motherJob: Doctor (not required, you can delete this property)
+                    fatherJob: Programmer (not required, you can delete this property)
+                    motherAge: The type is Number (not required, you can delete this property)
+                    fatherAge: The type is Number (not required, you can delete this property)
+            example:
+              name: fulan
+              phone: 081111111111
+              patientName: siti
+              birthday: '2023-01-30T00:00:00.000Z'
+              address: here
+              motherName: fulanah
+              fatherName: fulan
+              motherJob: Doctor (not required, you can delete this property)
+              fatherJob: Programmer (not required, you can delete this property)
+              motherAge: The type is Number (not required, you can delete this property)
+              fatherAge: The type is Number (not required, you can delete this property)
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/updateUserPassword:
+    patch:
+      tags:
+        - User
+      summary: Update User Password
+      operationId: UpdateUserPassword
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateUserPasswordRequest'
+                - example:
+                    oldPassword: secret
+                    newPassword: newsecret
+            example:
+              oldPassword: secret
+              newPassword: newsecret
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/update-role-admin/{userId}:
+    patch:
+      tags:
+        - User
+      summary: Update Role Admin
+      operationId: UpdateRoleAdmin
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /users/update-role-user/{userId}:
+    patch:
+      tags:
+        - User
+      summary: Update Role User
+      operationId: UpdateRoleUser
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /questions:
+    post:
+      tags:
+        - Question
+      summary: Create Question
+      operationId: CreateQuestion
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateQuestionRequest'
+                - example:
+                    category: sixUntilSeven
+                    itemQuestion: Menggunakan suara pasif yang tepat
+            example:
+              category: sixUntilSeven
+              itemQuestion: Menggunakan suara pasif yang tepat
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Question
+      summary: Get All Questions
+      operationId: GetAllQuestions
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /questions/{questionId}:
+    get:
+      tags:
+        - Question
+      summary: Get Single Question
+      operationId: GetSingleQuestion
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /questions/categories/{category}:
+    get:
+      tags:
+        - Question
+      summary: Get Question By Category
+      operationId: GetQuestionByCategory
+      parameters:
+        - in: path
+          name: category
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /questions/updateQuestion/{questionId}:
+    patch:
+      tags:
+        - Question
+      summary: Update Question
+      operationId: UpdateQuestion
+      parameters:
+        - in: path
+          name: questionId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateQuestionRequest'
+                - example:
+                    category: almostHalfYear
+                    itemQuestion: ''
+            example:
+              category: almostHalfYear
+              itemQuestion: ''
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /results:
+    post:
+      tags:
+        - Result
+      summary: Create Result
+      operationId: CreateResult
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateResultRequest'
+                - example:
+                    currentPatientName: jojo
+                    category: sixUntilSeven
+                    answers:
+                      - normal
+                      - normal
+                      - normal
+                      - normal
+                      - normal
+                      - normal
+                      - normal
+                      - indicated
+                      - indicated
+            example:
+              currentPatientName: jojo
+              category: sixUntilSeven
+              answers:
+                - normal
+                - normal
+                - normal
+                - normal
+                - normal
+                - normal
+                - normal
+                - indicated
+                - indicated
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Result
+      summary: Get All Results
+      operationId: GetAllResults
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /results/currentUser/results:
+    get:
+      tags:
+        - Result
+      summary: Get Result By Current User
+      operationId: GetResultByCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /results/{resultId}:
+    get:
+      tags:
+        - Result
+      summary: Get Single Result
+      operationId: GetSingleResult
+      parameters:
+        - in: path
+          name: resultId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Result
+      summary: Delete Result
+      operationId: DeleteResult
+      parameters:
+        - in: path
+          name: resultId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /results/user/{userId}:
+    get:
+      tags:
+        - Result
+      summary: Get Results By User Id
+      operationId: GetResultsByUserId
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /services:
+    post:
+      tags:
+        - Service
+      summary: Create Service
+      operationId: CreateService
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateServiceRequest'
+                - example:
+                    name: Assessment Speech Delay
+                    price: 19000
+                    description: ini adalah description
+                    type: assessment
+            example:
+              name: Assessment Speech Delay
+              price: 19000
+              description: ini adalah description
+              type: assessment
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Service
+      summary: Get All Services
+      operationId: GetAllServices
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /services/{serviceId}:
+    get:
+      tags:
+        - Service
+      summary: Get Single Service
+      operationId: GetSingleService
+      parameters:
+        - in: path
+          name: serviceId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - Service
+      summary: Update Service
+      operationId: UpdateService
+      parameters:
+        - in: path
+          name: serviceId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateServiceRequest'
+                - example:
+                    name: Assessment Speech Delay
+                    price: 18000
+                    description: ini adalah description
+                    type: assessment
+            example:
+              name: Assessment Speech Delay
+              price: 18000
+              description: ini adalah description
+              type: assessment
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Service
+      summary: Delete Service
+      operationId: DeleteService
+      parameters:
+        - in: path
+          name: serviceId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /services/type-service/assessment:
+    get:
+      tags:
+        - Service
+      summary: Get Service By Type
+      operationId: GetServiceByType
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /vouchers:
+    post:
+      tags:
+        - Voucher
+      summary: Create Voucher
+      operationId: CreateVoucher
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateVoucherRequest'
+                - example:
+                    couponCode: ASSESSMENTMURAH
+                    discountPercent: 20
+                    expiry_date: 2023-03-28
+            example:
+              couponCode: ASSESSMENTMURAH
+              discountPercent: 20
+              expiry_date: 2023-03-28
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Voucher
+      summary: Get All Vouchers
+      operationId: GetAllVouchers
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /vouchers/{voucherId}:
+    get:
+      tags:
+        - Voucher
+      summary: Get Single Voucher
+      operationId: GetSingleVoucher
+      parameters:
+        - in: path
+          name: voucherId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    patch:
+      tags:
+        - Voucher
+      summary: Update Voucher
+      operationId: UpdateVoucher
+      parameters:
+        - in: path
+          name: voucherId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/UpdateVoucherRequest'
+                - example:
+                    couponCode: JAGOANBIRRU
+                    discountPercent: 30
+                    expiry_date: 2022-12-31
+            example:
+              couponCode: JAGOANBIRRU
+              discountPercent: 30
+              expiry_date: 2022-12-31
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Voucher
+      summary: Delete Voucher
+      operationId: DeleteVoucher
+      parameters:
+        - in: path
+          name: voucherId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /vouchers/validate:
+    post:
+      tags:
+        - Voucher
+      summary: Validate Voucher
+      operationId: ValidateVoucher
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/ValidateVoucherRequest'
+                - example:
+                    voucherCode: JAGOANKAMUu
+            example:
+              voucherCode: JAGOANKAMUu
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders:
+    post:
+      tags:
+        - Order
+      summary: Create Order
+      operationId: CreateOrder
+      parameters: []
+      requestBody:
+        content:
+          multipart/form-data:
+            encoding: {}
+            schema:
+              required:
+                - name
+                - email
+                - phoneNumber
+                - bankTypeAccount
+                - receiverBankNumber
+                - discountPercent
+                - discountAmount
+                - originalPrice
+                - finalPrice
+                - image
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: fulan bin abdurrahman
+                email:
+                  type: string
+                  example: fulan@gmail.com
+                phoneNumber:
+                  type: string
+                  example: '08530000000'
+                bankTypeAccount:
+                  type: string
+                  example: BRI
+                receiverBankNumber:
+                  type: integer
+                  format: int32
+                  example: 123456
+                discountPercent:
+                  type: integer
+                  format: int32
+                  example: 50
+                discountAmount:
+                  type: integer
+                  format: int32
+                  example: 20000
+                originalPrice:
+                  type: integer
+                  format: int32
+                  example: 40000
+                finalPrice:
+                  type: integer
+                  format: int32
+                  example: 20000
+                image:
+                  { 'type': 'string', 'format': 'binary', 'nullable': true }
+        required: false
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Order
+      summary: Get All Orders
+      operationId: GetAllOrders
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/{orderId}:
+    get:
+      tags:
+        - Order
+      summary: Get Single Order
+      operationId: GetSingleOrder
+      parameters:
+        - in: path
+          name: orderId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    delete:
+      tags:
+        - Order
+      summary: Delete Order
+      operationId: DeleteOrder
+      parameters:
+        - in: path
+          name: orderId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/current-user/orders:
+    get:
+      tags:
+        - Order
+      summary: Get Orders By Current User
+      operationId: GetOrdersByCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/update-order-success/{orderId}:
+    patch:
+      tags:
+        - Order
+      summary: Update Order Status Success
+      operationId: UpdateOrderStatusSuccess
+      parameters:
+        - in: path
+          name: orderId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /orders/update-order-failed/{orderId}:
+    patch:
+      tags:
+        - Order
+      summary: Update Order Status Failed
+      operationId: UpdateOrderStatusFailed
+      parameters:
+        - in: path
+          name: orderId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /notifications:
+    post:
+      tags:
+        - Notification
+      summary: Create Notification
+      operationId: CreateNotification
+      parameters: []
+      requestBody:
+        description: ''
+        content:
+          application/json:
+            schema:
+              allOf:
+                - $ref: '#/components/schemas/CreateNotificationRequest'
+                - example:
+                    title: Berhasil aktivasi akun premium
+                    message: pesanan berhasil dibuat, tunggu minimal 2x24 jam hingga mendapartkan pembneritahuan aktivasi akun
+            example:
+              title: Berhasil aktivasi akun premium
+              message: pesanan berhasil dibuat, tunggu minimal 2x24 jam hingga mendapartkan pembneritahuan aktivasi akun
+        required: true
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+    get:
+      tags:
+        - Notification
+      summary: Get All Notifications
+      operationId: GetAllNotifications
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /notifications/{notificationId}:
+    get:
+      tags:
+        - Notification
+      summary: Get Single Notification
+      operationId: GetSingleNotification
+      parameters:
+        - in: path
+          name: notificationId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /notifications/current-user/notifications:
+    get:
+      tags:
+        - Notification
+      summary: Get Notifications By Current User
+      operationId: GetNotificationsByCurrentUser
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+  /notifications/mark-as-read/{notificationId}:
+    patch:
+      tags:
+        - Notification
+      summary: Mark As Read
+      operationId: MarkAsRead
+      parameters:
+        - in: path
+          name: notificationId
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ''
+          headers: {}
+      deprecated: false
+components:
+  schemas:
+    RegisterRequest:
+      title: RegisterRequest
+      required:
+        - name
+        - email
+        - password
+      type: object
+      properties:
+        name:
+          type: string
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        name: fulan
+        email: fulan@gmail.com
+        password: secret
+    LoginRequest:
+      title: LoginRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: fulan@gmail.com
+        password: secret
+    LoginAdminRequest:
+      title: LoginAdminRequest
+      required:
+        - email
+        - password
+      type: object
+      properties:
+        email:
+          type: string
+        password:
+          type: string
+      example:
+        email: fulan@gmail.com
+        password: secret
+    UpdateUserRequest:
+      title: UpdateUserRequest
+      required:
+        - name
+        - phone
+        - patientName
+        - birthday
+        - address
+        - motherName
+        - fatherName
+      type: object
+      properties:
+        name:
+          type: string
+        phone:
+          type: string
+        patientName:
+          type: string
+        birthday:
+          type: string
+        address:
+          type: string
+        motherName:
+          type: string
+        fatherName:
+          type: string
+      example:
+        name: fulan
+        example: 
+        patientName: siti
+        phone: '081111111111'
+        birthday: '7643862374'
+        address: here
+        motherName: fulanah
+        fatherName: fulan
+    UpdateUserPasswordRequest:
+      title: UpdateUserPasswordRequest
+      required:
+        - oldPassword
+        - newPassword
+      type: object
+      properties:
+        oldPassword:
+          type: string
+        newPassword:
+          type: string
+      example:
+        oldPassword: secret
+        newPassword: newsecret
+    CreateQuestionRequest:
+      title: CreateQuestionRequest
+      required:
+        - category
+        - itemQuestion
+      type: object
+      properties:
+        category:
+          type: string
+        itemQuestion:
+          type: string
+      example:
+        category: sixUntilSeven
+        itemQuestion: Menggunakan suara pasif yang tepat
+    UpdateQuestionRequest:
+      title: UpdateQuestionRequest
+      required:
+        - category
+        - itemQuestion
+      type: object
+      properties:
+        category:
+          type: string
+        itemQuestion:
+          type: string
+      example:
+        category: almostHalfYear
+        itemQuestion: ''
+    CreateResultRequest:
+      title: CreateResultRequest
+      required:
+        - currentPatientName
+        - category
+        - answers
+      type: object
+      properties:
+        currentPatientName:
+          type: string
+        category:
+          type: string
+        answers:
+          type: array
+          items:
+            type: string
+          description: ''
+      example:
+        currentPatientName: jojo
+        category: sixUntilSeven
+        answers:
+          - normal
+          - normal
+          - normal
+          - normal
+          - normal
+          - normal
+          - normal
+          - indicated
+          - indicated
+    CreateServiceRequest:
+      title: CreateServiceRequest
+      required:
+        - name
+        - price
+        - description
+        - type
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        description:
+          type: string
+        type:
+          type: string
+      example:
+        name: Assessment Speech Delay
+        price: 19000
+        description: ini adalah description
+        type: assessment
+    UpdateServiceRequest:
+      title: UpdateServiceRequest
+      required:
+        - name
+        - price
+        - description
+        - type
+      type: object
+      properties:
+        name:
+          type: string
+        price:
+          type: integer
+          format: int32
+        description:
+          type: string
+        type:
+          type: string
+      example:
+        name: Assessment Speech Delay
+        price: 18000
+        description: ini adalah description
+        type: assessment
+    CreateVoucherRequest:
+      title: CreateVoucherRequest
+      required:
+        - couponCode
+        - discountPercent
+        - expiry_date
+      type: object
+      properties:
+        couponCode:
+          type: string
+        discountPercent:
+          type: integer
+          format: int32
+        expiry_date:
+          type: string
+      example:
+        couponCode: ASSESSMENTMURAH
+        discountPercent: 20
+        expiry_date: 2023-03-28
+    UpdateVoucherRequest:
+      title: UpdateVoucherRequest
+      required:
+        - couponCode
+        - discountPercent
+        - expiry_date
+      type: object
+      properties:
+        couponCode:
+          type: string
+        discountPercent:
+          type: integer
+          format: int32
+        expiry_date:
+          type: string
+      example:
+        couponCode: JAGOANBIRRU
+        discountPercent: 30
+        expiry_date: 2022-12-31
+    ValidateVoucherRequest:
+      title: ValidateVoucherRequest
+      required:
+        - voucherCode
+      type: object
+      properties:
+        voucherCode:
+          type: string
+      example:
+        voucherCode: JAGOANKAMU
+    CreateNotificationRequest:
+      title: CreateNotificationRequest
+      required:
+        - title
+        - message
+      type: object
+      properties:
+        title:
+          type: string
+        message:
+          type: string
+      example:
+        title: Berhasil aktivasi akun premium
+        message: pesanan berhasil dibuat, tunggu minimal 2x24 jam hingga mendapartkan pembneritahuan aktivasi akun
+security:
+  - {}
+tags:
+  - name: Auth
+  - name: User
+  - name: Question
+  - name: Result
+  - name: Service
+  - name: Voucher
+  - name: Order
+  - name: Notification
